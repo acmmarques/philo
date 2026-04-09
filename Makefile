@@ -17,7 +17,9 @@ GRAY        = \033[0;90m
 RESET       = \033[0m
 
 # Files
-SRC_FILES   = main.c \
+SRC_FILES   = exit.c \
+			  init.c \
+			  main.c \
 			  parsing.c \
 
 # TESTS

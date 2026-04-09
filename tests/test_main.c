@@ -54,11 +54,43 @@ void test_parser(void)
 	assert_test(check_args(5, valid_pos) == 0, "Valid: Positive numbers with + sign");
 }
 
-void test_other_thing(void)
+void test_init(void)
 {
-	printf("\n[ Suite: Argument Parsing ]\n");
-}
+	printf("\n[ Suite: Initialization ]\n");
 
+	t_table table;
+	char *args[] = {"./philo", "5", "800", "200", "200", "7", NULL};
+
+	// 1. Test return value of init
+	assert_test(init_table(&table, 6, args) == 0, "Init: Returns 0 on success");
+
+	// 2. Test basic value assignment
+	assert_test(table.philo_count == 5, "Init: philo_count is 5");
+	assert_test(table.time_to_die == 800, "Init: time_to_die is 800");
+	assert_test(table.required_meals == 7, "Init: must_eat_count is 7");
+
+	// 3. Test memory allocation
+	assert_test(table.philos != NULL, "Init: Philos array is allocated");
+	assert_test(table.forks != NULL, "Init: Forks array is allocated");
+
+	if (table.philos && table.forks)
+	{
+		// 4. Test Philosopher Setup
+		assert_test(table.philos[0].id == 1, "Init: Philo 0 has ID 1");
+		assert_test(table.philos[4].id == 5, "Init: Philo 4 has ID 5");
+
+		// 5. Test Table Topology (The Circular Forks)
+		assert_test(table.philos[0].left_fork == &table.forks[0], "Init: Philo 1 left fork is fork 0");
+		assert_test(table.philos[0].right_fork == &table.forks[1], "Init: Philo 1 right fork is fork 1");
+
+		// The most critical test: Does the last philosopher wrap around?
+		assert_test(table.philos[4].left_fork == &table.forks[4], "Init: Philo 5 left fork is fork 4");
+		assert_test(table.philos[4].right_fork == &table.forks[0], "Init: Philo 5 right fork wraps to fork 0");
+
+		// Clean up memory and destroy mutexes so the test runner doesn't leak!
+		free_table(&table);
+	}
+}
 // ---------------------------------------------------------
 
 int main(void)
@@ -66,6 +98,7 @@ int main(void)
 	printf("\n--- STARTING TDD SUITE ---\n");
 
 	test_parser();
+	test_init();
 
 	printf("--- RESULTS: %d/%d PASSED ---\n\n", g_tests_passed, g_tests_run);
 
