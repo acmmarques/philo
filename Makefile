@@ -21,15 +21,12 @@ SRC_FILES   = exit.c \
 			  init.c \
 			  main.c \
 			  parsing.c \
+			  print.c \
+			  routine.c \
+			  simulation.c \
+			  time.c
 
-# TESTS
-TEST_DIR	= tests/
-
-TEST_FILES	= test_main.c \
-
-TEST_SRCS	= $(addprefix $(TEST_DIR), $(TEST_FILES))
-PROJ_SRCS_NO_MAIN = $(filter-out $(SRC_DIR)main.c, $(SRCS))
-
+# Sources and Objects
 SRCS        = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS        = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 
