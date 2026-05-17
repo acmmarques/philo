@@ -2,7 +2,7 @@ NAME        = philo
 
 # Compiler and flags
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -pthread
+CFLAGS      = -Wall -Wextra -Werror -pthread -g
 
 # Directories
 SRC_DIR     = src/
@@ -23,6 +23,7 @@ SRC_FILES   = exit.c \
 			  parsing.c \
 			  print.c \
 			  routine.c \
+			  routine_two.c \
 			  simulation.c \
 			  time.c
 
