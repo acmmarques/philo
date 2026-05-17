@@ -6,7 +6,7 @@
 /*   By: andcardo <andcardo@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:57:35 by andcardo          #+#    #+#             */
-/*   Updated: 2026/05/16 21:30:46 by andre            ###   ########.fr       */
+/*   Updated: 2026/05/17 10:44:04 by andre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	stop_simulation(t_table *table);
 void	*monitor_routine(void *arg);
 void	*philo_routine(void *arg);
 void	print_action(t_philo *philo, char *str);
+void	think_routine(t_philo *philo);
 int		is_sim_running(t_table *table);
 void	ft_usleep(long time_in_ms, t_table *table);
 

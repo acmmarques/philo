@@ -6,7 +6,7 @@
 /*   By: andre <andcardo@student.42lisboa.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 21:14:26 by andre             #+#    #+#             */
-/*   Updated: 2026/05/16 21:31:07 by andre            ###   ########.fr       */
+/*   Updated: 2026/05/17 10:46:26 by andre            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	*philo_routine(void *arg)
 		ft_usleep(10, philo->table);
 	while (is_sim_running(philo->table))
 	{
-		print_action(philo, "is thinking");
+		think_routine(philo);
 		pthread_mutex_lock(philo->left_fork);
 		print_action(philo, "has taken a fork");
 		if (philo->table->philo_count == 1)
